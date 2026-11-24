@@ -6,6 +6,7 @@ All notable changes. Format inspired by Keep a Changelog; versions follow SemVer
 
 ### Changed
 - Catalog expanded to 3,370 real projects (2,370 analyzed in depth, 1,000 indexed), from the same reproducible strategies with larger selection limits.
+- Timeline year labels lightened to meet WCAG AA contrast. axe-core: 0 WCAG 2 A/AA violations on all pages, desktop and mobile.
 
 ## [0.1.1] - 2026-11-24
 

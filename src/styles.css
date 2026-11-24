@@ -204,7 +204,7 @@ a.drawer:hover .drawer-name { color: var(--patina-hi); }
 }
 .is-archived .strata-life { background: var(--lavender); }
 .strata-rel { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--sodium); }
-.strata-years { position: relative; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; color: #6f7b89; margin-top: 3px; }
+.strata-years { position: relative; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.7rem; color: #8e99a6; margin-top: 3px; }
 .strata-years .mid { position: absolute; transform: translateX(-50%); color: var(--dust); }
 .strata-lg .strata-track { height: 16px; }
 .strata-lg .strata-years { font-size: 0.8rem; }
