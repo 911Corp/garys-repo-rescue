@@ -2,7 +2,13 @@
 
 All notable changes. Format inspired by Keep a Changelog; versions follow SemVer.
 
-## [0.2.0] - 2026-11-24 (first public release)
+## [0.3.0] - 2026-11-24
+
+### Added
+- Agent directive export: an AGENTS.md (or CLAUDE.md) to drop at the root of a clone, with known facts, non-negotiable rules, stop conditions (unclear license, active successor, suspicious code), four phases with "done when" criteria and a report format. Download or copy from any project page.
+- 3 unit tests (42 total).
+
+## [0.2.0] - 2026-11-24 (first public release, https://911corp.github.io/garys-repo-rescue/)
 
 ### Changed
 - Catalog expanded to 3,370 real projects (2,370 analyzed in depth, 1,000 indexed), from the same reproducible strategies with larger selection limits.

@@ -25,7 +25,7 @@ Search, combinable filters, 18 rule-based collections, 10 families, project page
 - Dependency analysis from manifests (outdated majors, deprecated packages, known advisories through ecosyste.ms advisories).
 - Active successor detection beyond forks (renamed repos, "moved to" in descriptions, package registry ownership).
 - Richer modernization suggestions per stack.
-- "Rescue directive" export tailored for coding agents (Claude Code, etc.).
+- Done in 0.3: "Rescue directive" export tailored for coding agents (AGENTS.md).
 - Free Stack integration using the `garys-adventures/handoff@1` format.
 
 ## Phase 5: Extension (later)

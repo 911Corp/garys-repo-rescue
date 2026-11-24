@@ -245,3 +245,27 @@ describe('fork intelligence', () => {
     expect(r.possibleSuccessor).toBeNull()
   })
 })
+
+import { agentDirectiveMarkdown } from '../src/core/agentDirective'
+
+describe('agent directive', () => {
+  const opts = { generatedAt: REF.toISOString() }
+  it('sets guardrails, phases and invents no commands', () => {
+    const md = agentDirectiveMarkdown(toProject(facts(), REF, REF.toISOString()), opts)
+    expect(md).toContain('# AGENTS.md: rescue of alice/bookmarkr')
+    expect(md).toContain('## Non-negotiable rules')
+    expect(md).toContain('### Phase 0')
+    expect(md).toContain('Done when')
+    expect(md).not.toMatch(/npm (install|run|start)|pip install|cargo build/)
+  })
+  it('blocks work when the license is missing', () => {
+    const f = facts({ license: { spdx: null, name: null, url: null } })
+    const md = agentDirectiveMarkdown(toProject(f, REF, REF.toISOString()), opts)
+    expect(md).toContain('the license is not clear')
+  })
+  it('points to an active successor before forking', () => {
+    const f = facts({ forkIntel: { checked: true, inspected: 3, notable: [], possibleSuccessor: 'bob/bookmarkr-ng', successorHints: [] } })
+    const md = agentDirectiveMarkdown(toProject(f, REF, REF.toISOString()), opts)
+    expect(md).toContain('compare with bob/bookmarkr-ng')
+  })
+})

@@ -5,6 +5,7 @@ import { copyText, download, recordVisit } from '../app/store'
 import { garyLine, jarvisLine } from '../app/voice'
 import { fmtDate, humanAge } from '../core/dates'
 import { freeStackHandoff } from '../core/exporters'
+import { agentDirectiveMarkdown } from '../core/agentDirective'
 import { modernizationIdeas, rescuePlanMarkdown } from '../core/rescuePlan'
 import { RESCUE_WEIGHTS } from '../core/scoring'
 import { similarProjects } from '../core/similar'
@@ -177,12 +178,14 @@ function ProjectView({ p, all, generatedAt }: { p: P; all: P[]; generatedAt: str
       <section className="plan">
         <div className="section-head">
           <h2>Rescue Plan</h2>
-          <p className="muted">A Markdown report you can hand to a coding agent. Facts are marked, suggestions are labelled, no commands are invented.</p>
+          <p className="muted">A Markdown report for you, and an AGENTS.md directive to drop into your clone for a coding agent. Facts are marked, suggestions are labelled, no commands are invented.</p>
         </div>
         <div className="plan-actions">
           <button className="btn" type="button" onClick={() => download(`${p.fullName.replace('/', '__')}-rescue-plan.md`, plan, 'text/markdown')}>Download Rescue Plan (.md)</button>
           <button className="btn-ghost" type="button" onClick={async () => flash((await copyText(plan)) ? 'Rescue Plan copied' : 'Copy failed: use the download')}>Copy Markdown</button>
           <button className="btn-ghost" type="button" aria-expanded={planOpen} onClick={() => setPlanOpen((o) => !o)}>{planOpen ? 'Hide preview' : 'Preview'}</button>
+          <button className="btn-ghost" type="button" onClick={() => download('AGENTS.md', agentDirectiveMarkdown(p, { generatedAt, appUrl: window.location.href }), 'text/markdown')}>Agent directive (AGENTS.md)</button>
+          <button className="btn-ghost" type="button" onClick={async () => flash((await copyText(agentDirectiveMarkdown(p, { generatedAt, appUrl: window.location.href }))) ? 'Agent directive copied' : 'Copy failed: use the download')}>Copy directive</button>
           <button className="btn-ghost" type="button" onClick={() => download(`${p.fullName.replace('/', '__')}-free-stack.json`, JSON.stringify(freeStackHandoff(p), null, 2), 'application/json')}>Export for Free Stack</button>
         </div>
         {planOpen && <pre className="plan-preview" tabIndex={0}>{plan}</pre>}
