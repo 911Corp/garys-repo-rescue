@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useCatalog } from '../app/data'
 import { go, href } from '../app/router'
-import { RANDOM_INTROS, pick } from '../app/voice'
+import { pick } from '../app/voice'
 import { COLLECTIONS, FAMILIES } from '../core/taxonomy'
-import { Gary, Jarvis, ProjectCard } from '../ui/bits'
+import { Jarvis, ProjectCard } from '../ui/bits'
 
 export function Home() {
   const { projects, meta } = useCatalog()
@@ -53,10 +53,6 @@ export function Home() {
           <p className="catalog-line">
             {meta.counts.total.toLocaleString('en-US')} repositories in the catalog, {meta.counts.analyzed.toLocaleString('en-US')} analyzed in depth. Built {new Date(meta.generatedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}.
           </p>
-        </div>
-        <div className="hero-gary" aria-hidden="true">
-          <Gary size={150} />
-          <p className="bubble">{pick(RANDOM_INTROS, day)}</p>
         </div>
       </section>
 

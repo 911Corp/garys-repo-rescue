@@ -11,7 +11,7 @@ import { RESCUE_WEIGHTS } from '../core/scoring'
 import { similarProjects } from '../core/similar'
 import { FAMILIES } from '../core/taxonomy'
 import type { Project as P } from '../core/types'
-import { CompareButton, ConfBadge, DiffBadge, FavButton, Gary, LicenseBadge, MaintBadge, ProjectCard, Score, Strata, fmtN } from '../ui/bits'
+import { CompareButton, ConfBadge, DiffBadge, FavButton, LicenseBadge, MaintBadge, ProjectCard, Score, Strata, fmtN } from '../ui/bits'
 import { downloadShareCard } from '../ui/shareCard'
 import { ForkCheck } from '../ui/ForkCheck'
 
@@ -24,7 +24,7 @@ export function ProjectPage({ fullName }: { fullName: string }) {
   if (!p) {
     return (
       <div className="empty">
-        <Gary size={90} pose="think" />
+        
         <h1>Not in the catalog</h1>
         <p><code>{fullName}</code> is not in this catalog build. It may have been filtered out or never discovered.</p>
         <p><a className="btn" href={`https://github.com/${fullName}`} target="_blank" rel="noreferrer">Open it on GitHub</a> <a className="btn-ghost" href={href('explore')}>Back to Explore</a></p>
@@ -111,13 +111,8 @@ function ProjectView({ p, all, generatedAt }: { p: P; all: P[]; generatedAt: str
 
         <section className="notebook" aria-labelledby="nb-h">
           <h2 id="nb-h">Gary's notebook <span className="tag">hypotheses</span></h2>
-          <div className="duo">
-            <Gary size={56} />
-            <div>
-              <p className="voice gary-says"><span className="who">gary</span> {garyLine(p)}</p>
-              <p className="voice jarvis"><span className="who">jarvis</span> {jarvisLine(p)}</p>
-            </div>
-          </div>
+          <p className="voice gary-says"><span className="who">gary</span><span>{garyLine(p)}</span></p>
+          <p className="voice jarvis"><span className="who">jarvis</span><span>{jarvisLine(p)}</span></p>
           <h3>Why it was selected</h3>
           <ul className="tight">{a.reasons.map((r) => <li key={r}>{r}</li>)}</ul>
           {fam.length > 0 && <ul className="fam-tags">{fam.map((f) => <li key={f.id}><a href={href('explore', `family=${f.id}&sort=rescue`)}>{f.label}</a></li>)}</ul>}

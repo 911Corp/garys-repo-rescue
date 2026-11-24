@@ -5,7 +5,7 @@ import { compareStore, download, favoritesStore, historyStore, listsStore, toggl
 import { fmtDate, humanAge } from '../core/dates'
 import { selectionMarkdown, toCSV, toJSON } from '../core/exporters'
 import type { Project } from '../core/types'
-import { ConfBadge, DiffBadge, Gary, LicenseBadge, MaintBadge, ProjectCard, Score, Strata } from '../ui/bits'
+import { ConfBadge, DiffBadge, LicenseBadge, MaintBadge, ProjectCard, Score, Strata } from '../ui/bits'
 
 export function Saved() {
   const { byId } = useCatalog()
@@ -40,7 +40,7 @@ export function Saved() {
               <button className="btn" type="submit">Create collection</button>
             </form>
           </>
-        ) : <div className="empty"><Gary size={70} /><p>Nothing saved yet. Use the star on any project.</p><a className="btn" href={href('explore')}>Explore</a></div>}
+        ) : <div className="empty"><p>Nothing saved yet. Use the star on any project.</p><a className="btn" href={href('explore')}>Explore</a></div>}
       </section>
       {lists.length > 0 && (
         <section>
@@ -76,7 +76,7 @@ export function Saved() {
 export function Compare() {
   const { byId } = useCatalog()
   const items = useStore(compareStore).map((id) => byId.get(id)).filter((p): p is Project => !!p)
-  if (!items.length) return <div className="empty"><Gary size={80} pose="think" /><h1>Compare projects</h1><p>Add up to four projects with the Compare button on a project page.</p><a className="btn" href={href('explore')}>Explore</a></div>
+  if (!items.length) return <div className="empty"><h1>Compare projects</h1><p>Add up to four projects with the Compare button on a project page.</p><a className="btn" href={href('explore')}>Explore</a></div>
   const rows: [string, (p: Project) => React.ReactNode][] = [
     ['Timeline', (p) => <Strata p={p} />],
     ['Rescue Score', (p) => <Score v={p.a.rescue.score} />],

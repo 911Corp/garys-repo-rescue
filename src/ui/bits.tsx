@@ -5,24 +5,30 @@ import { href, projectPath } from '../app/router'
 import { compareStore, favoritesStore, toggleCompare, toggleFavorite, useStore } from '../app/store'
 
 /** Gary: deliberately MS-Paint-ish stick gamer on his chair, headset on. Decorative. */
-export function Gary({ size = 64, pose = 'sit' }: { size?: number; pose?: 'sit' | 'think' | 'cheer' }) {
-  const arm = pose === 'cheer' ? 'M30 30 L20 12 M30 30 L42 13' : pose === 'think' ? 'M30 31 L37 37 L33 22' : 'M30 31 L40 38 L50 37'
+/**
+ * Gary, header mark only. Stick-figure gamer with a headset, sitting on his chair
+ * (with room left on the seat) in front of his PC. Deliberately simple, MS Paint spirit.
+ */
+export function Gary({ size = 40 }: { size?: number }) {
   return (
-    <svg className="gary" width={size} height={size} viewBox="0 0 72 72" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-      {/* desk + screen */}
-      <path d="M44 44 L70 44 M48 44 L48 66 M66 44 L66 66" strokeWidth="2" />
-      <path d="M52 26 L68 25 L68 39 L52 40 Z" strokeWidth="2" />
-      <path d="M60 40 L60 44" strokeWidth="2" />
-      {/* chair */}
-      <path d="M14 33 L13 50 L32 51 M22 51 L21 66 M14 66 L30 66" strokeWidth="2" />
+    <svg className="gary" width={size * 1.33} height={size} viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* chair: backrest, seat, column, base */}
+      <path d="M5 13 L6 33 L25 33 M15 33 L15 44 M8 45 L22 45" />
+      {/* desk + PC */}
+      <path d="M36 31 L62 31 M39 31 L39 46 M59 31 L59 46" />
+      <path d="M43 12 L59 12 L59 25 L43 25 Z" />
+      <path d="M51 25 L51 31" />
       {/* head */}
-      <path d="M24 9 C31 8 33 14 31 18 C29 22 22 22 20 18 C18 13 20 10 24 9 Z" />
-      {/* headset */}
-      <path d="M19 15 C19 5 33 4 33 14" strokeWidth="2" />
-      <path d="M33 15 C35 18 34 21 31 23" strokeWidth="1.6" />
-      {/* body + legs */}
-      <path d="M25 22 L24 48 L40 49 L41 64" />
-      <path d={arm} />
+      <circle cx="19" cy="9" r="4.6" />
+      {/* headset: band, ear cups, mic */}
+      <path d="M12.6 9 C12.4 0.6 25.6 0.6 25.4 9" strokeWidth="1.8" />
+      <rect x="11.4" y="7.6" width="2.6" height="4.6" rx="1" fill="currentColor" strokeWidth="1" />
+      <rect x="24" y="7.6" width="2.6" height="4.6" rx="1" fill="currentColor" strokeWidth="1" />
+      <path d="M25.6 12 Q26.2 15.4 22.4 15.2" strokeWidth="1.6" />
+      {/* body, leg, arm on the keyboard */}
+      <path d="M18.5 13.8 L17 32" />
+      <path d="M17 32 L30 31.5 L31 45 L34 45" />
+      <path d="M18 19 L25 26 L37 29.5" />
     </svg>
   )
 }
@@ -85,7 +91,7 @@ export function Strata({ p, large }: { p: Project; large?: boolean }) {
       </div>
       <div className="strata-years" aria-hidden="true">
         <span>{y0}</span>
-        {large && y1 !== y0 && <span style={{ left: `${activePct}%` }} className="mid">{y1}</span>}
+        {large && y1 !== y0 && y1 !== new Date(end).getUTCFullYear() && activePct >= 12 && activePct <= 88 && <span style={{ left: `${activePct}%` }} className="mid">{y1}</span>}
         <span>{new Date(end).getUTCFullYear()}</span>
       </div>
     </div>
@@ -147,8 +153,8 @@ export function ProjectCard({ p, note }: { p: Project; note?: ReactNode }) {
 export const fmtN = (n: number) => (n >= 10000 ? `${Math.round(n / 1000)}k` : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n))
 
 export function Jarvis({ children }: { children: ReactNode }) {
-  return <p className="voice jarvis"><span className="who">jarvis</span> {children}</p>
+  return <p className="voice jarvis"><span className="who">jarvis</span><span>{children}</span></p>
 }
 export function GarySays({ children }: { children: ReactNode }) {
-  return <p className="voice gary-says"><span className="who">gary</span> {children}</p>
+  return <p className="voice gary-says"><span className="who">gary</span><span>{children}</span></p>
 }

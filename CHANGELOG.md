@@ -2,6 +2,18 @@
 
 All notable changes. Format inspired by Keep a Changelog; versions follow SemVer.
 
+## [0.3.1] - 2026-11-24
+
+### Changed
+- Gary now appears only in the header. Removed the illustration and speech bubbles from the home hero, Random rescue, project notebook, empty and loading states.
+- Header mark redrawn: stick-figure gamer with a visible headset (band, ear cups, mic), chair with room on the seat, PC on the desk.
+- Gary/Jarvis lines laid out as a two-column grid so wrapped text stays aligned on mobile.
+- Mobile navigation wraps instead of being cut off.
+
+### Fixed
+- Ruled background of the notebook crossing the text; notebook stretched with empty space.
+- Overlapping year labels on the timeline when the last activity is close to today.
+
 ## [0.3.0] - 2026-11-24
 
 ### Added

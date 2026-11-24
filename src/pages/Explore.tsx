@@ -7,7 +7,7 @@ import { EMPTY, pick } from '../app/voice'
 import { selectionMarkdown, toCSV, toJSON } from '../core/exporters'
 import { COLLECTIONS, FAMILIES } from '../core/taxonomy'
 import type { Project } from '../core/types'
-import { Gary, Jarvis, ProjectCard } from '../ui/bits'
+import { Jarvis, ProjectCard } from '../ui/bits'
 
 const MAINT = ['Active', 'Low Activity', 'Dormant', 'Stable', 'Archived', 'Unknown']
 const LIC = ['Permissive', 'Copyleft', 'Other Restrictions', 'No Explicit License', 'Unknown']
@@ -140,7 +140,7 @@ export function Explore({ route }: { route: Route }) {
         <section className="results" aria-label="Results">
           {list.length === 0 ? (
             <div className="empty">
-              <Gary size={90} pose="think" />
+              
               <p>{pick(EMPTY, route.query)}</p>
               <p className="muted">Try removing a filter or a word. Search also understands plain descriptions like “offline note app in rust”.</p>
             </div>

@@ -6,7 +6,7 @@ import { download } from '../app/store'
 import { RANDOM_INTROS, garyLine, jarvisLine, pick } from '../app/voice'
 import { selectionMarkdown } from '../core/exporters'
 import { COLLECTIONS, FAMILIES } from '../core/taxonomy'
-import { ConfBadge, DiffBadge, Gary, Jarvis, LicenseBadge, MaintBadge, ProjectCard, Score, Strata } from '../ui/bits'
+import { ConfBadge, DiffBadge, Jarvis, LicenseBadge, MaintBadge, ProjectCard, Score, Strata } from '../ui/bits'
 
 /* ---------- Collections ---------- */
 
@@ -49,7 +49,7 @@ export function CollectionPage({ id }: { id: string }) {
       <p className="lede">{c.tagline}</p>
       <p className="rule"><strong>Rule:</strong> {c.criteria} Sorted by Rescue Score. <a href={href('explore', `collection=${c.id}&sort=rescue`)}>Filter further in Explore</a>.</p>
       {list.length === 0 ? (
-        <div className="empty"><Gary size={80} pose="think" />
+        <div className="empty">
           <p>{id === 'recently-discovered' ? 'This is the first catalog build, so everything is new and nothing is "recently discovered" yet. Ask again after the next refresh.' : 'No project matches this rule in the current catalog.'}</p>
         </div>
       ) : (
@@ -90,16 +90,13 @@ export function RandomRescue({ route }: { route: Route }) {
 
       {p ? (
         <div className="dig" key={p.id}>
-          <div className="dig-top">
-            <Gary size={70} pose="cheer" />
-            <p className="bubble">{pick(RANDOM_INTROS, p.id)}</p>
-          </div>
+          <p className="dig-intro">{pick(RANDOM_INTROS, p.id)}</p>
           <a className="dig-title" href={href(`p/${p.fullName}`)}><span className="owner">{p.owner}/</span>{p.name}</a>
           <p className="p-desc">{p.description}</p>
           <Strata p={p} large />
           <div className="card-badges"><Score v={p.a.rescue.score} /><MaintBadge s={p.a.maintenance} /><LicenseBadge s={p.a.licenseStatus} spdx={p.license.spdx} /><DiffBadge d={p.a.difficulty} /><ConfBadge l={p.a.confidence.level} /></div>
-          <p className="voice gary-says"><span className="who">gary</span> {garyLine(p)}</p>
-          <p className="voice jarvis"><span className="who">jarvis</span> {jarvisLine(p)}</p>
+          <p className="voice gary-says"><span className="who">gary</span><span>{garyLine(p)}</span></p>
+          <p className="voice jarvis"><span className="who">jarvis</span><span>{jarvisLine(p)}</span></p>
           <div className="plan-actions">
             <button className="btn" type="button" onClick={() => setSeed(Math.random())}>Dig again</button>
             <a className="btn-ghost" href={href(`p/${p.fullName}`)}>Open the full file</a>
@@ -107,7 +104,7 @@ export function RandomRescue({ route }: { route: Route }) {
           </div>
         </div>
       ) : (
-        <div className="empty"><Gary size={80} pose="think" /><p>No project left with these filters. Remove one.</p></div>
+        <div className="empty"><p>No project left with these filters. Remove one.</p></div>
       )}
     </div>
   )
@@ -152,7 +149,7 @@ export function Finder({ route }: { route: Route }) {
           {hits.length ? (
             <div className="grid">{hits.map((h) => <ProjectCard key={h.project.id} p={h.project} note={<>Matched: {h.matched.slice(0, 5).join(', ')}</>} />)}</div>
           ) : (
-            <div className="empty"><Gary size={80} pose="think" /><p>Nothing in the catalog matches that idea yet. Try simpler words, or search GitHub directly.</p>
+            <div className="empty"><p>Nothing in the catalog matches that idea yet. Try simpler words, or search GitHub directly.</p>
               <a className="btn-ghost" href={`https://github.com/search?q=${encodeURIComponent(initial)}&type=repositories`} target="_blank" rel="noreferrer">Search GitHub for “{initial}”</a></div>
           )}
         </>
@@ -164,7 +161,7 @@ export function Finder({ route }: { route: Route }) {
 export function NotFound() {
   return (
     <div className="empty">
-      <Gary size={90} pose="think" />
+      
       <h1>Nothing dug up here</h1>
       <p>This page does not exist. Maybe it was archived too.</p>
       <a className="btn" href={href('')}>Back home</a>

@@ -34,7 +34,7 @@ export default function App() {
       <a className="skip" href="#main">Skip to content</a>
       <header className="topbar">
         <a className="brand" href={href('')} aria-label="Gary's Repo Rescue, home">
-          <Gary size={34} />
+          <Gary size={30} />
           <span className="brand-name">gary's repo rescue</span>
         </a>
         <nav aria-label="Main">
@@ -47,8 +47,8 @@ export default function App() {
       </header>
       <main id="main" ref={main} tabIndex={-1}>
         <CatalogProvider
-          fallback={<div className="loading" role="status"><Gary size={80} pose="think" /><p>{pick(LOADING)}</p></div>}
-          error={(m) => <div className="empty" role="alert"><Gary size={80} pose="think" /><h1>The catalog did not load</h1><p>{m}</p></div>}
+          fallback={<div className="loading" role="status"><p>{pick(LOADING)}</p></div>}
+          error={(m) => <div className="empty" role="alert"><h1>The catalog did not load</h1><p>{m}</p></div>}
         >
           <Page route={route} />
         </CatalogProvider>
